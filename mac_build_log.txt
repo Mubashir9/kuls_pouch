@@ -1,0 +1,4 @@
+  • electron-builder  version=26.7.0 os=10.0.26200
+  • loaded configuration  file=package.json ("build" field)
+  • author is missed in the package.json  appPackageFile=C:\Users\Lenovo\Desktop\Projects\Web Dev\Kul_Dashboard\budget_tracker\package.json
+  ⨯ Build for macOS is supported only on macOS, please see https://electron.build/multi-platform-build
