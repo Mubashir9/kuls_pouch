@@ -5,6 +5,7 @@ import type { Transaction, TransactionType } from '../../types';
 import { Plus, Minus, Calendar, Tag, FileText } from 'lucide-react';
 import { format } from 'date-fns';
 import { CategoryModal } from './CategoryModal';
+import { DatePicker } from '../common/DatePicker';
 
 interface TransactionModalProps {
     isOpen: boolean;
@@ -130,19 +131,12 @@ export const TransactionModal = ({ isOpen, onClose, transaction }: TransactionMo
 
                 {/* Date & Category Group */}
                 <div className="grid grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-text-secondary mb-1">Date</label>
-                        <div className="relative">
-                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
-                            <input
-                                type="date"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)}
-                                className="w-full pl-9 pr-3 py-2 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
-                                required
-                            />
-                        </div>
-                    </div>
+                    <DatePicker
+                        label="Date"
+                        value={date}
+                        onChange={setDate}
+                    />
+
                     <div>
                         <div className="flex justify-between items-center mb-1">
                             <label className="block text-sm font-medium text-text-secondary">Category</label>

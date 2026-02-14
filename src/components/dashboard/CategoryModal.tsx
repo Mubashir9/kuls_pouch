@@ -9,6 +9,21 @@ interface CategoryModalProps {
     onClose: () => void;
 }
 
+const CATEGORY_COLORS = [
+    '#EF4444', // Red
+    '#F59E0B', // Amber
+    '#10B981', // Emerald
+    '#3B82F6', // Blue
+    '#6366F1', // Indigo
+    '#8B5CF6', // Violet
+    '#D946EF', // Fuchsia
+    '#EC4899', // Pink
+    '#06B6D4', // Cyan
+    '#14B8A6', // Teal
+    '#84CC16', // Lime
+    '#A89F91', // Secondary/Beige
+];
+
 export const CategoryModal = ({ isOpen, onClose }: CategoryModalProps) => {
     const { categories, addCategory, deleteCategory } = useData();
     const [newCategoryName, setNewCategoryName] = useState('');
@@ -22,11 +37,14 @@ export const CategoryModal = ({ isOpen, onClose }: CategoryModalProps) => {
     const handleAdd = async () => {
         if (!newCategoryName.trim()) return;
 
+        // Pick a random color from the palette
+        const randomColor = CATEGORY_COLORS[Math.floor(Math.random() * CATEGORY_COLORS.length)];
+
         await addCategory({
             name: newCategoryName,
             type: newCategoryType,
-            color: '#6B7280', // Default color for now
-            icon: 'tag' // Default icon for now
+            color: randomColor,
+            icon: 'tag'
         });
 
         setNewCategoryName('');
@@ -44,9 +62,9 @@ export const CategoryModal = ({ isOpen, onClose }: CategoryModalProps) => {
             <div className="space-y-6">
 
                 {/* Add New Category Section */}
-                <div className="bg-gray-50 dark:bg-slate-800/50 p-4 rounded-xl border border-border">
+                <div className="bg-secondary/10 p-4 rounded-xl border border-border">
                     <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-sm font-semibold text-text-primary">Add New Application</h3>
+                        <h3 className="text-sm font-semibold text-text-primary">Add New Category</h3>
                         {!isAdding && (
                             <button
                                 onClick={() => setIsAdding(true)}
@@ -80,7 +98,7 @@ export const CategoryModal = ({ isOpen, onClose }: CategoryModalProps) => {
                             <div className="flex justify-end gap-2">
                                 <button
                                     onClick={() => setIsAdding(false)}
-                                    className="px-3 py-1.5 text-xs text-text-secondary hover:bg-gray-200 dark:hover:bg-slate-700 rounded-lg transition"
+                                    className="px-3 py-1.5 text-xs text-text-secondary hover:bg-secondary/20 rounded-lg transition"
                                 >
                                     Cancel
                                 </button>
@@ -103,7 +121,7 @@ export const CategoryModal = ({ isOpen, onClose }: CategoryModalProps) => {
                         <h4 className="text-xs font-semibold uppercase text-text-secondary mb-3">Income Categories</h4>
                         <div className="space-y-2">
                             {incomeCategories.map(cat => (
-                                <div key={cat.id} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition group">
+                                <div key={cat.id} className="flex items-center justify-between p-2 rounded-lg hover:bg-secondary/10 transition group">
                                     <div className="flex items-center gap-2">
                                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: cat.color }}></div>
                                         <span className="text-sm text-text-primary">{cat.name}</span>
@@ -126,7 +144,7 @@ export const CategoryModal = ({ isOpen, onClose }: CategoryModalProps) => {
                         <h4 className="text-xs font-semibold uppercase text-text-secondary mb-3">Expense Categories</h4>
                         <div className="space-y-2 h-64 overflow-y-auto pr-2 custom-scrollbar">
                             {expenseCategories.map(cat => (
-                                <div key={cat.id} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition group">
+                                <div key={cat.id} className="flex items-center justify-between p-2 rounded-lg hover:bg-secondary/10 transition group">
                                     <div className="flex items-center gap-2">
                                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: cat.color }}></div>
                                         <span className="text-sm text-text-primary">{cat.name}</span>
