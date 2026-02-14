@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from '../common/Modal';
 import { useData } from '../../contexts/DataContext';
 import type { Transaction, TransactionType } from '../../types';
-import { Plus, Minus, Calendar, Tag, FileText } from 'lucide-react';
+import { Plus, Minus, Tag, FileText } from 'lucide-react';
 import { format } from 'date-fns';
 import { CategoryModal } from './CategoryModal';
 import { DatePicker } from '../common/DatePicker';
